@@ -1,174 +1,356 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
+<html lang="ar" dir="rtl" class="lang-ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>اختبر فهمك - رياضيات ثالث متوسط</title>
-    <meta name="description" content="اختبار تفاعلي لمادة الرياضيات - الصف الثالث المتوسط">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
-        rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عبدالعزيز | ABDULAZIZ // PORTFOLIO.EXE</title>
+<meta name="description" content="بروتوفوليو عبدالعزيز - مطور مواقع، مبرمج، مختبر اختراق، خريج محاسبة">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+<body class="lang-ar">
 
-<body>
-    <!-- شاشة البداية -->
-    <div id="welcomeScreen" class="screen active">
-        <div class="container">
-            <div class="welcome-content">
-                <div class="math-icon">📐</div>
-                <h1 class="gradient-text">عزوز + هنو - اختبر فهمك</h1>
-                <p class="subtitle">رياضيات - ثالث متوسط</p>
-                <p class="description">اختبار شامل للفصول الأربعة الأولى</p>
-
-                <div class="chapters-info">
-                    <div class="chapter-card">
-                        <span class="chapter-emoji">📘</span>
-                        <span>المعادلات الخطية</span>
-                    </div>
-                    <div class="chapter-card">
-                        <span class="chapter-emoji">📗</span>
-                        <span>العلاقات والدوال الخطية</span>
-                    </div>
-                    <div class="chapter-card">
-                        <span class="chapter-emoji">📙</span>
-                        <span>الدوال الخطية</span>
-                    </div>
-                    <div class="chapter-card">
-                        <span class="chapter-emoji">📕</span>
-                        <span>المتباينات الخطية</span>
-                    </div>
-                </div>
-
-                <div class="student-info">
-                    <input type="text" id="studentName" placeholder="أدخل اسمك (اختياري)" class="name-input">
-                </div>
-
-                <button class="btn-primary" onclick="startQuiz()">
-                    <span>ابدأ الاختبار</span>
-                    <span class="btn-icon">✨</span>
-                </button>
-
-                <div class="features">
-                    <div class="feature">
-                        <span class="feature-icon">💡</span>
-                        <span>تلميحات مساعدة</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">📊</span>
-                        <span>نتائج فورية</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🎯</span>
-                        <span>أسئلة متدرجة</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ===== BOOT SCREEN ===== -->
+<div id="boot-screen">
+  <div class="boot-inner">
+    <div class="boot-logo">AZ</div>
+    <div class="boot-title">
+      <span class="t-ar">نظام البروتوفوليو</span><span class="t-en">PORTFOLIO OS</span>
     </div>
-
-    <!-- شاشة الاختبار -->
-    <div id="quizScreen" class="screen">
-        <div class="container">
-            <!-- Header -->
-            <div class="quiz-header">
-                <div class="student-name-display" id="studentNameDisplay"></div>
-                <div class="progress-info">
-                    <span class="question-counter">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">20</span>
-                    </span>
-                </div>
-            </div>
-
-            <!-- شريط التقدم -->
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-
-            <!-- بطاقة السؤال -->
-            <div class="question-card">
-                <div class="chapter-badge" id="chapterBadge"></div>
-                <div class="difficulty-badge" id="difficultyBadge"></div>
-
-                <h2 class="question-text" id="questionText"></h2>
-
-                <div class="options-container" id="optionsContainer"></div>
-
-                <!-- قسم التلميحات -->
-                <div class="hint-section" id="hintSection">
-                    <button class="hint-button" onclick="showHint()">
-                        <span class="hint-icon">💡</span>
-                        <span>هل تحتاج مساعدة؟</span>
-                    </button>
-                    <div class="hint-content" id="hintContent"></div>
-                </div>
-
-                <!-- أزرار التنقل -->
-                <div class="navigation-buttons">
-                    <button class="btn-secondary" id="nextButton" onclick="nextQuestion()" disabled>
-                        <span>التالي</span>
-                        <span>←</span>
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+    <div class="boot-hint blink">
+      <span class="t-ar">اضغط أي مكان للبدء</span><span class="t-en">PRESS ANYWHERE TO START</span>
     </div>
+  </div>
+  <canvas id="matrix-canvas"></canvas>
+</div>
 
-    <!-- شاشة النتائج -->
-    <div id="resultsScreen" class="screen">
-        <div class="container">
-            <div class="results-content">
-                <div class="results-icon" id="resultsIcon"></div>
-                <h1 class="results-title" id="resultsTitle"></h1>
-                <p class="results-message" id="resultsMessage"></p>
+<!-- ===== NAV ===== -->
+<header id="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">ABZ<span class="cursor-blink">_</span></a>
 
-                <div class="score-circle">
-                    <svg viewBox="0 0 200 200">
-                        <circle cx="100" cy="100" r="90" class="score-bg"></circle>
-                        <circle cx="100" cy="100" r="90" class="score-progress" id="scoreCircle"></circle>
-                    </svg>
-                    <div class="score-text">
-                        <div class="score-number" id="scoreNumber">0%</div>
-                        <div class="score-label">النتيجة النهائية</div>
-                    </div>
-                </div>
+    <nav class="nav-links" id="nav-links">
+      <a href="#home" class="nav-link active" data-section="home"><span class="t-ar">الرئيسية</span><span class="t-en">Home</span></a>
+      <a href="#about" class="nav-link" data-section="about"><span class="t-ar">نبذة</span><span class="t-en">About</span></a>
+      <a href="#education" class="nav-link" data-section="education"><span class="t-ar">التعليم</span><span class="t-en">Education</span></a>
+      <a href="#experience" class="nav-link" data-section="experience"><span class="t-ar">الخبرة</span><span class="t-en">Experience</span></a>
+      <a href="#skills" class="nav-link" data-section="skills"><span class="t-ar">المهارات</span><span class="t-en">Skills</span></a>
+      <a href="#achievements" class="nav-link" data-section="achievements"><span class="t-ar">الإنجازات</span><span class="t-en">Achievements</span></a>
+      <a href="#projects" class="nav-link" data-section="projects"><span class="t-ar">المشاريع</span><span class="t-en">Projects</span></a>
+      <a href="#contact" class="nav-link" data-section="contact"><span class="t-ar">تواصل</span><span class="t-en">Contact</span></a>
+    </nav>
 
-                <div class="stats-grid">
-                    <div class="stat-card correct">
-                        <div class="stat-icon">✓</div>
-                        <div class="stat-number" id="correctAnswers">0</div>
-                        <div class="stat-label">إجابات صحيحة</div>
-                    </div>
-                    <div class="stat-card wrong">
-                        <div class="stat-icon">✗</div>
-                        <div class="stat-number" id="wrongAnswers">0</div>
-                        <div class="stat-label">إجابات خاطئة</div>
-                    </div>
-                    <div class="stat-card hints">
-                        <div class="stat-icon">💡</div>
-                        <div class="stat-number" id="hintsUsed">0</div>
-                        <div class="stat-label">تلميحات مستخدمة</div>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="btn-primary" onclick="restartQuiz()">
-                        <span>إعادة الاختبار</span>
-                        <span class="btn-icon">🔄</span>
-                    </button>
-                </div>
-
-                <div class="encouragement" id="encouragement"></div>
-            </div>
-        </div>
+    <div class="nav-actions">
+      <button id="lang-toggle" class="pixel-btn small" type="button">EN</button>
+      <button id="nav-burger" class="nav-burger" type="button" aria-label="menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+</header>
 
-    <!-- Particles Background -->
-    <div class="particles" id="particles"></div>
+<main>
 
-    <script src="script.js"></script>
+  <!-- ===== HERO ===== -->
+  <section id="home" class="section hero">
+    <canvas id="hero-matrix"></canvas>
+    <div class="section-inner hero-inner">
+      <p class="pretitle">
+        <span class="t-ar">&gt; تشغيل ملف السيرة الذاتية...</span><span class="t-en">&gt; whoami --load-profile</span>
+      </p>
+      <h1 class="hero-name">ABDULAZIZ<span class="cursor-blink">_</span></h1>
+      <h1 class="hero-name hero-name-ar t-ar">عبدالعزيز</h1>
+      <p class="handle">@xsayfex</p>
+      <div class="role-line">
+        <span class="role-prefix">[</span><span id="role-text" class="role-text"></span><span class="cursor-blink">|</span><span class="role-prefix">]</span>
+      </div>
+      <p class="hero-bio">
+        <span class="t-ar">خريج محاسبة، مطوّر مواقع، ومختبر اختراق حاصل على المركز الثالث على مستوى المملكة العربية السعودية.</span>
+        <span class="t-en">Accounting graduate, web developer, and penetration tester — ranked 3rd place across the Kingdom of Saudi Arabia.</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="pixel-btn primary"><span class="t-ar">تواصل معي</span><span class="t-en">Contact Me</span></a>
+        <a href="#projects" class="pixel-btn"><span class="t-ar">شاهد أعمالي</span><span class="t-en">View Work</span></a>
+      </div>
+    </div>
+    <div class="scroll-hint blink">▼</div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section">
+    <div class="section-inner">
+      <p class="level-tag">LEVEL 01</p>
+      <h2 class="section-title"><span class="t-ar">نبذة عني</span><span class="t-en">About Me</span></h2>
+
+      <div class="dialog-box pixel-box">
+        <div class="dialog-avatar" aria-hidden="true">
+          <div class="pixel-avatar"></div>
+        </div>
+        <div class="dialog-text">
+          <p class="t-ar">
+            أنا عبدالعزيز، خريج بكالوريوس محاسبة من <strong>جامعة أم القرى</strong>، وأتدرّب حاليًا في
+            <strong>شركة سليمان موسى العليان</strong> حيث قمت بتطوير نظام لإدارة المخازن والجرد والمشتريات.
+            بالتوازي مع ذلك، أعمل في مجال البرمجة وتطوير المواقع الإلكترونية، وكذلك اختبار الاختراق،
+            وحصلت على <strong>المركز الثالث على مستوى المملكة العربية السعودية</strong> في اختبار اختراق
+            تطبيقات الجوال على منصتي <strong>Flag Yard</strong> و <strong>CyberHub</strong>.
+          </p>
+          <p class="t-en">
+            I'm Abdulaziz, a Bachelor's graduate in Accounting from <strong>Umm Al-Qura University</strong>,
+            currently training at <strong>Suliman Musa Al-Olayan Co.</strong>, where I built a Warehouse,
+            Inventory &amp; Purchasing Management System. Alongside that, I work in software development,
+            web development, and penetration testing — ranking <strong>3rd place across the Kingdom of Saudi
+            Arabia</strong> in Mobile Application Penetration Testing on the <strong>Flag Yard</strong> and
+            <strong>CyberHub</strong> platforms.
+          </p>
+        </div>
+      </div>
+
+      <div class="tag-row">
+        <span class="pixel-tag">💰 <span class="t-ar">محاسبة</span><span class="t-en">Accounting</span></span>
+        <span class="pixel-tag">💻 <span class="t-ar">تطوير مواقع</span><span class="t-en">Web Dev</span></span>
+        <span class="pixel-tag">🛡️ <span class="t-ar">اختبار اختراق</span><span class="t-en">Pentesting</span></span>
+        <span class="pixel-tag">📦 <span class="t-ar">إدارة المخازن</span><span class="t-en">Inventory Mgmt</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education" class="section alt">
+    <div class="section-inner">
+      <p class="level-tag">LEVEL 02</p>
+      <h2 class="section-title"><span class="t-ar">التعليم</span><span class="t-en">Education</span></h2>
+
+      <div class="quest-card pixel-box">
+        <div class="quest-badge">🎓</div>
+        <div class="quest-body">
+          <p class="quest-status"><span class="t-ar">مهمة مكتملة</span><span class="t-en">QUEST COMPLETE</span></p>
+          <h3 class="quest-title">
+            <span class="t-ar">بكالوريوس محاسبة</span><span class="t-en">Bachelor's Degree in Accounting</span>
+          </h3>
+          <p class="quest-sub">
+            <span class="t-ar">جامعة أم القرى</span><span class="t-en">Umm Al-Qura University</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" class="section">
+    <div class="section-inner">
+      <p class="level-tag">LEVEL 03</p>
+      <h2 class="section-title"><span class="t-ar">الخبرة</span><span class="t-en">Experience</span></h2>
+
+      <div class="quest-card pixel-box">
+        <div class="quest-badge">🧾</div>
+        <div class="quest-body">
+          <p class="quest-status in-progress"><span class="t-ar">مهمة جارية</span><span class="t-en">QUEST IN PROGRESS</span></p>
+          <h3 class="quest-title">
+            <span class="t-ar">متدرب محاسبة</span><span class="t-en">Accounting Trainee</span>
+          </h3>
+          <p class="quest-sub">
+            <span class="t-ar">شركة سليمان موسى العليان</span><span class="t-en">Suliman Musa Al-Olayan Co.</span>
+          </p>
+          <p class="quest-desc">
+            <span class="t-ar">قمت بتصميم وتطوير نظام لإدارة المخازن والجرد والمشتريات لتحسين دقة وكفاءة العمليات التشغيلية.</span>
+            <span class="t-en">Designed and built a Warehouse, Inventory &amp; Purchasing Management System to improve the accuracy and efficiency of operations.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section alt">
+    <div class="section-inner">
+      <p class="level-tag">LEVEL 04</p>
+      <h2 class="section-title"><span class="t-ar">المهارات</span><span class="t-en">Skills</span></h2>
+      <p class="section-note"><span class="t-ar">// جدول الحالة</span><span class="t-en">// character stat sheet</span></p>
+
+      <div class="stats-grid">
+        <div class="stats-col pixel-box">
+          <h3 class="stats-col-title"><span class="t-ar">التقنية</span><span class="t-en">Tech</span></h3>
+
+          <div class="stat-row" data-value="90">
+            <span class="stat-label"><span class="t-ar">تطوير المواقع</span><span class="t-en">Web Development</span></span>
+            <div class="stat-bar"><div class="stat-fill"></div></div>
+          </div>
+          <div class="stat-row" data-value="85">
+            <span class="stat-label"><span class="t-ar">اختبار الاختراق</span><span class="t-en">Penetration Testing</span></span>
+            <div class="stat-bar"><div class="stat-fill"></div></div>
+          </div>
+          <div class="stat-row" data-value="80">
+            <span class="stat-label"><span class="t-ar">البرمجة</span><span class="t-en">Programming</span></span>
+            <div class="stat-bar"><div class="stat-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="stats-col pixel-box">
+          <h3 class="stats-col-title"><span class="t-ar">المحاسبة والأعمال</span><span class="t-en">Accounting &amp; Business</span></h3>
+
+          <div class="stat-row" data-value="85">
+            <span class="stat-label"><span class="t-ar">المحاسبة المالية</span><span class="t-en">Financial Accounting</span></span>
+            <div class="stat-bar"><div class="stat-fill"></div></div>
+          </div>
+          <div class="stat-row" data-value="80">
+            <span class="stat-label"><span class="t-ar">إدارة المخازن والمشتريات</span><span class="t-en">Inventory &amp; Purchasing</span></span>
+            <div class="stat-bar"><div class="stat-fill"></div></div>
+          </div>
+          <div class="stat-row" data-value="75">
+            <span class="stat-label">Excel / ERP</span>
+            <div class="stat-bar"><div class="stat-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="stats-disclaimer">
+        <span class="t-ar">* المستويات تقريبية ويمكن تعديلها لاحقًا حسب رغبتك.</span>
+        <span class="t-en">* Levels are illustrative — feel free to adjust to your liking.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ACHIEVEMENTS ===== -->
+  <section id="achievements" class="section">
+    <div class="section-inner">
+      <p class="level-tag">LEVEL 05</p>
+      <h2 class="section-title"><span class="t-ar">الإنجازات</span><span class="t-en">Achievements</span></h2>
+
+      <div class="trophy-grid">
+        <div class="trophy-card pixel-box">
+          <div class="trophy-icon">🥉</div>
+          <p class="trophy-rank"><span class="t-ar">المركز الثالث</span><span class="t-en">3rd Place</span></p>
+          <p class="trophy-title">
+            <span class="t-ar">اختبار اختراق تطبيقات الجوال - على مستوى المملكة العربية السعودية</span>
+            <span class="t-en">Mobile Application Penetration Testing — Kingdom of Saudi Arabia</span>
+          </p>
+          <p class="trophy-platform">Flag Yard</p>
+        </div>
+
+        <div class="trophy-card pixel-box">
+          <div class="trophy-icon">🥉</div>
+          <p class="trophy-rank"><span class="t-ar">المركز الثالث</span><span class="t-en">3rd Place</span></p>
+          <p class="trophy-title">
+            <span class="t-ar">اختبار اختراق تطبيقات الجوال</span>
+            <span class="t-en">Mobile Application Penetration Testing</span>
+          </p>
+          <p class="trophy-platform">CyberHub</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section alt">
+    <div class="section-inner">
+      <p class="level-tag">LEVEL 06</p>
+      <h2 class="section-title"><span class="t-ar">المشاريع</span><span class="t-en">Projects</span></h2>
+
+      <div class="project-grid">
+        <div class="project-card pixel-box">
+          <div class="project-icon">📦</div>
+          <h3 class="project-title">
+            <span class="t-ar">نظام إدارة المخازن والجرد والمشتريات</span>
+            <span class="t-en">Warehouse, Inventory &amp; Purchasing System</span>
+          </h3>
+          <p class="project-desc">
+            <span class="t-ar">نظام طُوّر أثناء التدريب في شركة سليمان موسى العليان لتنظيم عمليات المخازن، الجرد، والمشتريات بدقة أعلى.</span>
+            <span class="t-en">Built during my training at Suliman Musa Al-Olayan Co. to streamline warehouse, stocktaking, and purchasing operations.</span>
+          </p>
+        </div>
+
+        <div class="project-card pixel-box">
+          <div class="project-icon">🕹️</div>
+          <h3 class="project-title">
+            <span class="t-ar">هذا البروتوفوليو</span>
+            <span class="t-en">This Portfolio</span>
+          </h3>
+          <p class="project-desc">
+            <span class="t-ar">موقع شخصي بتصميم بكسل آرت، مبني من الصفر بلغات HTML وCSS وJavaScript، ثنائي اللغة.</span>
+            <span class="t-en">A bilingual pixel-art personal site built from scratch with HTML, CSS, and JavaScript.</span>
+          </p>
+        </div>
+
+        <div class="project-card pixel-box">
+          <div class="project-icon">🛡️</div>
+          <h3 class="project-title">
+            <span class="t-ar">تحديات اختبار اختراق تطبيقات الجوال</span>
+            <span class="t-en">Mobile App Pentesting Challenges</span>
+          </h3>
+          <p class="project-desc">
+            <span class="t-ar">تحليل واختبار ثغرات تطبيقات جوال ضمن منافسات Flag Yard وCyberHub، بترتيب المركز الثالث على مستوى المملكة.</span>
+            <span class="t-en">Analyzed and exploited mobile app vulnerabilities in the Flag Yard and CyberHub competitions, placing 3rd nationwide.</span>
+          </p>
+        </div>
+
+        <div class="project-card pixel-box">
+          <div class="project-icon">📱</div>
+          <h3 class="project-title">
+            <span class="t-ar">موقع لشرح اختبار اختراق تطبيقات الجوال</span>
+            <span class="t-en">Mobile App Penetration Testing Guide</span>
+          </h3>
+          <p class="project-desc">
+            <span class="t-ar">موقع من إعدادي أشرح فيه منهجية اختبار اختراق تطبيقات الجوال خطوة بخطوة، من التحليل الساكن والديناميكي إلى استغلال الثغرات الشائعة.</span>
+            <span class="t-en">A site I built explaining mobile application penetration testing methodology step by step — from static and dynamic analysis to exploiting common vulnerabilities.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section">
+    <div class="section-inner">
+      <p class="level-tag">LEVEL 07</p>
+      <h2 class="section-title"><span class="t-ar">تواصل معي</span><span class="t-en">Contact</span></h2>
+      <p class="section-note"><span class="t-ar">// أرسل رسالة أو تواصل مباشرة عبر البريد</span><span class="t-en">// send a message or reach out directly by email</span></p>
+
+      <div class="contact-wrap">
+        <form id="contact-form" class="contact-form pixel-box" novalidate>
+          <label class="field">
+            <span class="t-ar">الاسم</span><span class="t-en">Name</span>
+            <input type="text" name="name" required>
+          </label>
+          <label class="field">
+            <span class="t-ar">البريد الإلكتروني</span><span class="t-en">Email</span>
+            <input type="email" name="email" required>
+          </label>
+          <label class="field">
+            <span class="t-ar">الرسالة</span><span class="t-en">Message</span>
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button type="submit" class="pixel-btn primary full">
+            <span class="t-ar">إرسال</span><span class="t-en">Send</span>
+          </button>
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+        </form>
+
+        <div class="contact-side">
+          <a class="pixel-btn full" href="mailto:abdulazizarawi101@gmail.com">
+            ✉️ abdulazizarawi101@gmail.com
+          </a>
+          <div class="social-row">
+            <a class="pixel-btn small" href="https://github.com/xsayfex" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="pixel-btn small" href="https://x.com/xsayfex" target="_blank" rel="noopener noreferrer">X</a>
+            <a class="pixel-btn small" href="https://tiktok.com/@xsayfex" target="_blank" rel="noopener noreferrer">TikTok</a>
+          </div>
+          <p class="contact-hint">@xsayfex</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer">
+  <p><span class="t-ar">صُنع بـ HTML/CSS/JS •</span><span class="t-en">Built with HTML/CSS/JS •</span> <span id="year"></span> © Abdulaziz</p>
+  <p class="footer-flavor blink">&gt; TO BE CONTINUED...</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
 </body>
-
 </html>
