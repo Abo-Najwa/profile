@@ -1,1009 +1,433 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="lang-ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عبدالعزيز | ABDULAZIZ // PORTFOLIO.EXE</title>
-<meta name="description" content="بروتوفوليو عبدالعزيز - مطور مواقع، مبرمج، مختبر اختراق، خريج محاسبة">
+<title>النخبة للسيارات</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-
-  /* =========================================================
-   PORTFOLIO — PIXEL / RETRO THEME
-   ========================================================= */
-
-:root {
-  --bg: #0e1218;
-  --bg-alt: #131924;
-  --panel: #1a2130;
-  --panel-light: #232c3e;
-  --primary: #6fcf97;
-  --primary-dim: #416b52;
-  --secondary: #6fb3c9;
-  --accent: #cf7fa0;
-  --gold: #cfb271;
-  --bronze: #c99a68;
-  --text: #d9e3dc;
-  --muted: #7c8ba0;
-  --border: #2b3a4a;
-  --cut: 10px;
-  --font-pixel: 'Press Start 2P', 'Cairo', cursive;
-  --font-mono: 'VT323', monospace;
-  --font-ar: 'Cairo', sans-serif;
-}
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 20px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  background-image:
-    linear-gradient(rgba(111,207,151,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(111,207,151,0.025) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-html.lang-ar body, html.lang-ar { direction: rtl; }
-html.lang-en body, html.lang-en { direction: ltr; }
-
-/* Arabic uses Cairo everywhere it appears; English keeps pixel/mono fonts */
-[lang], .t-ar { font-family: var(--font-ar); }
-html.lang-ar body { font-family: var(--font-ar); }
-
-::selection { background: var(--primary); color: #06170a; }
-
-a { color: inherit; text-decoration: none; }
-
-img { max-width: 100%; display: block; }
-
-/* ---------- language toggling ---------- */
-.t-en { }
-.t-ar { }
-html:not(.lang-en) .t-en { display: none !important; }
-html.lang-en .t-ar { display: none !important; }
-html.lang-en .hero-name.t-ar { display: none !important; }
-
-/* ---------- blinking / cursor ---------- */
-.blink { animation: blink 1.1s steps(1) infinite; }
-.cursor-blink { animation: blink 0.9s steps(1) infinite; color: var(--primary); }
-@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-
-/* =========================================================
-   PIXEL BOX — reusable panel with stair-cut corners
-   ========================================================= */
-.pixel-box {
-  position: relative;
-  background: var(--panel);
-  border: 3px solid var(--primary);
-  padding: 28px;
-  clip-path: polygon(
-    0 var(--cut), var(--cut) var(--cut), var(--cut) 0,
-    calc(100% - var(--cut)) 0, calc(100% - var(--cut)) var(--cut), 100% var(--cut),
-    100% calc(100% - var(--cut)), calc(100% - var(--cut)) calc(100% - var(--cut)), calc(100% - var(--cut)) 100%,
-    var(--cut) 100%, var(--cut) calc(100% - var(--cut)), 0 calc(100% - var(--cut))
-  );
-  box-shadow: 0 0 0 3px var(--bg), 6px 6px 0 0 rgba(111,207,151,0.12);
-}
-
-/* =========================================================
-   BOOT SCREEN
-   ========================================================= */
-#boot-screen {
-  position: fixed; inset: 0; z-index: 999;
-  background: #05070c;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: opacity .5s steps(8), visibility .5s;
-}
-#boot-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-#matrix-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .35; }
-.boot-inner { position: relative; z-index: 2; text-align: center; padding: 20px; }
-.boot-logo {
-  font-family: var(--font-pixel);
-  font-size: clamp(40px, 10vw, 72px);
-  color: var(--primary);
-  text-shadow: 3px 3px 0 var(--primary-dim);
-  margin-bottom: 20px;
-}
-.boot-title { font-family: var(--font-pixel); font-size: 14px; color: var(--secondary); letter-spacing: 2px; margin-bottom: 30px; }
-.boot-bar { width: min(320px, 70vw); height: 16px; border: 3px solid var(--primary); margin: 0 auto 24px; background: var(--bg); }
-.boot-bar-fill { height: 100%; width: 0%; background: var(--primary); animation: boot-load 1.8s steps(20) forwards; }
-@keyframes boot-load { to { width: 100%; } }
-.boot-hint { font-family: var(--font-pixel); font-size: 11px; color: var(--muted); letter-spacing: 1px; }
-
-/* =========================================================
-   NAV
-   ========================================================= */
-#site-nav {
-  position: fixed; top: 0; inset-inline: 0; z-index: 100;
-  background: rgba(10,14,23,0.9);
-  border-bottom: 3px solid var(--primary);
-  backdrop-filter: blur(4px);
-}
-.nav-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 20px;
-  gap: 16px;
-}
-.nav-logo {
-  font-family: var(--font-pixel);
-  font-size: 18px; color: var(--primary);
-  flex-shrink: 0;
-}
-.nav-links {
-  display: flex; gap: 4px; flex-wrap: wrap;
-  font-family: var(--font-pixel);
-  font-size: 10px;
-}
-html.lang-ar .nav-links { font-family: var(--font-ar); font-size: 15px; font-weight: 700; }
-.nav-link {
-  padding: 8px 10px;
-  color: var(--muted);
-  border: 2px solid transparent;
-  transition: color .15s, border-color .15s;
-  white-space: nowrap;
-}
-.nav-link:hover, .nav-link.active {
-  color: var(--primary);
-  border-color: var(--primary-dim);
-}
-.nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.nav-burger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 6px; }
-.nav-burger span { width: 22px; height: 3px; background: var(--primary); display: block; }
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-.pixel-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: 8px;
-  font-family: var(--font-pixel);
-  font-size: 11px;
-  color: var(--primary);
-  background: var(--bg);
-  border: 3px solid var(--primary);
-  padding: 14px 18px;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 0 var(--primary-dim);
-  transition: transform .1s, box-shadow .1s;
-  clip-path: polygon(0 6px, 6px 6px, 6px 0, calc(100% - 6px) 0, calc(100% - 6px) 6px, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 6px calc(100% - 6px), 0 calc(100% - 6px));
-}
-html.lang-ar .pixel-btn { font-family: var(--font-ar); font-size: 15px; font-weight: 700; }
-.pixel-btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 0 var(--primary-dim); }
-.pixel-btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 0 var(--primary-dim); }
-.pixel-btn.primary { background: var(--primary); color: #06170a; box-shadow: 4px 4px 0 0 var(--accent); }
-.pixel-btn.primary:hover { box-shadow: 2px 2px 0 0 var(--accent); }
-.pixel-btn.small { padding: 8px 12px; font-size: 10px; }
-.pixel-btn.full { width: 100%; }
-
-/* =========================================================
-   HERO
-   ========================================================= */
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-  padding-top: 90px;
-  text-align: center;
-  overflow: hidden;
-}
-#hero-matrix { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .18; z-index: 0; }
-.hero-inner { position: relative; z-index: 1; max-width: 800px; padding: 20px; }
-.pretitle { font-family: var(--font-mono); font-size: 20px; color: var(--secondary); margin-bottom: 10px; }
-html.lang-ar .pretitle { font-family: var(--font-ar); font-size: 17px; }
-.handle {
-  font-family: var(--font-pixel);
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  margin: 10px 0 0;
-}
-.hero-name {
-  font-family: var(--font-pixel);
-  font-size: clamp(32px, 8vw, 64px);
-  color: var(--primary);
-  text-shadow: 4px 4px 0 var(--accent);
-  margin: 10px 0;
-  line-height: 1.3;
-}
-.hero-name-ar {
-  font-family: var(--font-ar);
-  font-size: clamp(22px, 5vw, 40px);
-  font-weight: 800;
-  text-shadow: none;
-  margin-top: -6px;
-}
-.role-line {
-  font-family: var(--font-pixel);
-  font-size: clamp(12px, 3vw, 18px);
-  color: var(--gold);
-  margin: 24px 0;
-  min-height: 1.5em;
-}
-html.lang-ar .role-line { font-family: var(--font-ar); font-weight: 800; font-size: clamp(16px, 4vw, 22px); }
-.role-prefix { color: var(--muted); }
-.hero-bio { max-width: 560px; margin: 20px auto; color: var(--text); font-size: 22px; }
-html.lang-ar .hero-bio { font-size: 18px; }
-.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-.scroll-hint { position: absolute; bottom: 30px; inset-inline: 0; text-align: center; color: var(--primary); font-size: 20px; z-index: 1; }
-
-/* =========================================================
-   SECTIONS
-   ========================================================= */
-.section { padding: 100px 20px; position: relative; }
-.section.alt { background: var(--bg-alt); }
-.section-inner { max-width: 1100px; margin: 0 auto; }
-.level-tag {
-  font-family: var(--font-pixel);
-  font-size: 12px;
-  color: var(--accent);
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-}
-.section-title {
-  font-family: var(--font-pixel);
-  font-size: clamp(22px, 5vw, 34px);
-  color: var(--primary);
-  margin: 0 0 30px;
-  text-shadow: 3px 3px 0 var(--panel-light);
-}
-html.lang-ar .section-title { font-family: var(--font-ar); font-weight: 800; }
-.section-note { font-family: var(--font-mono); color: var(--muted); font-size: 18px; margin-top: -18px; margin-bottom: 30px; }
-html.lang-ar .section-note { font-family: var(--font-ar); font-size: 15px; }
-
-/* ---------- about / dialog box ---------- */
-.dialog-box { display: flex; gap: 24px; align-items: flex-start; }
-.pixel-avatar {
-  width: 96px; height: 96px;
-  background: var(--primary);
-  box-shadow:
-    inset 0 -16px 0 0 var(--panel),
-    inset 16px 0 0 0 var(--bg),
-    inset -16px 0 0 0 var(--bg),
-    inset 0 16px 0 0 var(--bg);
-  border: 3px solid var(--primary);
-  flex-shrink: 0;
-}
-.dialog-text p { margin: 0 0 14px; font-size: 19px; }
-html.lang-ar .dialog-text p { font-size: 17px; }
-.dialog-text strong { color: var(--secondary); }
-
-.tag-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.pixel-tag {
-  border: 2px solid var(--secondary);
-  color: var(--secondary);
-  padding: 8px 14px;
-  font-size: 16px;
-  display: inline-flex; gap: 6px; align-items: center;
-}
-html.lang-ar .pixel-tag { font-family: var(--font-ar); font-weight: 700; font-size: 14px; }
-
-/* ---------- quest cards (education / experience) ---------- */
-.quest-card { display: flex; gap: 22px; align-items: flex-start; }
-.quest-badge { font-size: 44px; line-height: 1; flex-shrink: 0; }
-.quest-status {
-  font-family: var(--font-pixel); font-size: 11px;
-  color: var(--gold); margin: 0 0 10px; letter-spacing: 1px;
-}
-.quest-status.in-progress { color: var(--secondary); }
-html.lang-ar .quest-status { font-family: var(--font-ar); font-weight: 800; font-size: 14px; }
-.quest-title { font-size: 24px; margin: 0 0 6px; color: var(--text); }
-.quest-sub { color: var(--primary); margin: 0 0 12px; font-size: 19px; }
-.quest-desc { color: var(--muted); font-size: 18px; margin: 0; }
-html.lang-ar .quest-title { font-size: 20px; }
-html.lang-ar .quest-sub, html.lang-ar .quest-desc { font-size: 16px; }
-
-/* ---------- skills / stats ---------- */
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.stats-col-title {
-  font-family: var(--font-pixel); font-size: 14px; color: var(--secondary);
-  margin: 0 0 24px; border-bottom: 2px solid var(--border); padding-bottom: 12px;
-}
-html.lang-ar .stats-col-title { font-family: var(--font-ar); font-size: 18px; }
-.stat-row { margin-bottom: 20px; }
-.stat-label { display: block; font-size: 17px; margin-bottom: 8px; color: var(--text); }
-html.lang-ar .stat-label { font-family: var(--font-ar); font-size: 15px; }
-.stat-bar { height: 18px; background: var(--bg); border: 2px solid var(--primary); }
-.stat-fill {
-  height: 100%; width: 0%;
-  background: repeating-linear-gradient(90deg, var(--primary) 0 8px, var(--primary-dim) 8px 10px);
-  transition: width 1.2s steps(20);
-}
-.stats-disclaimer { color: var(--muted); font-size: 15px; margin-top: 24px; }
-html.lang-ar .stats-disclaimer { font-family: var(--font-ar); }
-
-/* ---------- trophies ---------- */
-.trophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
-.trophy-card { text-align: center; }
-.trophy-icon { font-size: 48px; margin-bottom: 12px; }
-.trophy-rank {
-  font-family: var(--font-pixel); font-size: 16px; color: var(--bronze);
-  margin: 0 0 14px; text-shadow: 2px 2px 0 var(--panel-light);
-}
-html.lang-ar .trophy-rank { font-family: var(--font-ar); font-size: 20px; font-weight: 800; }
-.trophy-title { color: var(--text); font-size: 18px; margin: 0 0 10px; }
-html.lang-ar .trophy-title { font-family: var(--font-ar); font-size: 16px; }
-.trophy-platform { color: var(--secondary); font-family: var(--font-pixel); font-size: 12px; }
-
-/* ---------- projects ---------- */
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
-.project-icon { font-size: 40px; margin-bottom: 14px; }
-.project-title { color: var(--primary); font-size: 20px; margin: 0 0 12px; }
-html.lang-ar .project-title { font-family: var(--font-ar); font-size: 18px; }
-.project-desc { color: var(--muted); font-size: 17px; margin: 0; }
-html.lang-ar .project-desc { font-family: var(--font-ar); font-size: 15px; }
-
-/* ---------- contact ---------- */
-.contact-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: start; }
-.contact-form { display: flex; flex-direction: column; gap: 18px; }
-.field { display: flex; flex-direction: column; gap: 8px; font-size: 16px; color: var(--secondary); }
-html.lang-ar .field { font-family: var(--font-ar); font-weight: 700; }
-.field input, .field textarea {
-  font-family: var(--font-mono); font-size: 18px;
-  background: var(--bg); color: var(--text);
-  border: 2px solid var(--primary); padding: 10px 12px;
-  resize: vertical;
-}
-html.lang-ar .field input, html.lang-ar .field textarea { font-family: var(--font-ar); }
-.field input:focus, .field textarea:focus { outline: 2px solid var(--secondary); }
-.form-status { min-height: 1.4em; color: var(--gold); font-size: 15px; margin: 0; }
-.contact-side { display: flex; flex-direction: column; gap: 16px; }
-.social-row { display: flex; gap: 12px; flex-wrap: wrap; }
-.social-row .pixel-btn { flex: 1; }
-.contact-hint { color: var(--muted); font-size: 14px; font-family: var(--font-pixel); letter-spacing: 1px; }
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-#site-footer {
-  text-align: center; padding: 40px 20px;
-  border-top: 3px solid var(--primary);
-  color: var(--muted); font-size: 16px;
-  background: var(--bg-alt);
-}
-.footer-flavor { color: var(--primary-dim); font-family: var(--font-pixel); font-size: 10px; margin-top: 14px; }
-
-/* =========================================================
-   TOAST
-   ========================================================= */
-.toast {
-  position: fixed; bottom: 24px; inset-inline-start: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: var(--primary); color: #06170a;
-  font-family: var(--font-pixel); font-size: 11px;
-  padding: 14px 20px; border: 3px solid var(--bg);
-  box-shadow: 4px 4px 0 0 var(--accent);
-  opacity: 0; pointer-events: none;
-  transition: opacity .25s, transform .25s;
-  z-index: 200;
-  max-width: 90vw; text-align: center;
-}
-html.lang-ar .toast { font-family: var(--font-ar); font-weight: 700; font-size: 14px; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-/* =========================================================
-   REVEAL ANIMATION
-   ========================================================= */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity .5s, transform .5s; }
-.reveal.in-view { opacity: 1; transform: translateY(0); }
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-@media (max-width: 860px) {
-  .stats-grid, .contact-wrap { grid-template-columns: 1fr; }
-  .nav-links {
-    position: fixed; top: 62px; inset-inline: 0;
-    background: var(--bg); border-bottom: 3px solid var(--primary);
-    flex-direction: column; padding: 10px 20px 20px;
-    max-height: 0; overflow: hidden;
-    transition: max-height .3s ease;
-  }
-  .nav-links.open { max-height: 500px; }
-  .nav-burger { display: flex; }
-  .dialog-box { flex-direction: column; align-items: center; text-align: center; }
-  .quest-card { flex-direction: column; align-items: center; text-align: center; }
-}
-
-
-@media (max-width: 480px) {
-  body { font-size: 17px; }
-  .pixel-box { padding: 20px; }
-}
-
-  
+  body{font-family:'Cairo',sans-serif;}
+  .py-6{padding-top:5rem;padding-bottom:5rem;}
+  @media (max-width:767px){.py-6{padding-top:3rem;padding-bottom:3rem;}}
+  .car-media{height:150px;}
+  .accordion-button:not(.collapsed){box-shadow:none;}
+  .badge-num{width:28px;height:28px;font-size:.85rem;}
+  .step-num{width:52px;height:52px;font-size:1.2rem;}
 </style>
 </head>
-<body class="lang-ar">
+<body>
 
-<!-- ===== BOOT SCREEN ===== -->
-<div id="boot-screen">
-  <div class="boot-inner">
-    <div class="boot-logo">ABZ</div>
-    <div class="boot-title">
-      <span class="t-ar">نظام البروتوفوليو</span><span class="t-en">PORTFOLIO OS</span>
-    </div>
-    <div class="boot-bar"><div class="boot-bar-fill"></div></div>
-    <div class="boot-hint blink">
-      <span class="t-ar">اضغط أي مكان للبدء</span><span class="t-en">PRESS ANYWHERE TO START</span>
-    </div>
-  </div>
-  <canvas id="matrix-canvas"></canvas>
+<!-- Floating buttons -->
+<div class="position-fixed bottom-0 end-0 m-3 d-flex flex-column gap-2" style="z-index:1050;">
+  <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-success rounded-circle shadow d-flex align-items-center justify-content-center" style="width:52px;height:52px;" aria-label="واتساب"><i class="fa-brands fa-whatsapp fs-5"></i></a>
+  <a href="tel:+966500000000" class="btn btn-primary rounded-circle shadow d-flex align-items-center justify-content-center" style="width:52px;height:52px;" aria-label="اتصال"><i class="fa-solid fa-phone fs-5"></i></a>
 </div>
 
-<!-- ===== NAV ===== -->
-<header id="site-nav">
-  <div class="nav-inner">
-    <a href="#home" class="nav-logo">ABZ<span class="cursor-blink">_</span></a>
-
-    <nav class="nav-links" id="nav-links">
-      <a href="#home" class="nav-link active" data-section="home"><span class="t-ar">الرئيسية</span><span class="t-en">Home</span></a>
-      <a href="#about" class="nav-link" data-section="about"><span class="t-ar">نبذة</span><span class="t-en">About</span></a>
-      <a href="#education" class="nav-link" data-section="education"><span class="t-ar">التعليم</span><span class="t-en">Education</span></a>
-      <a href="#experience" class="nav-link" data-section="experience"><span class="t-ar">الخبرة</span><span class="t-en">Experience</span></a>
-      <a href="#skills" class="nav-link" data-section="skills"><span class="t-ar">المهارات</span><span class="t-en">Skills</span></a>
-      <a href="#achievements" class="nav-link" data-section="achievements"><span class="t-ar">الإنجازات</span><span class="t-en">Achievements</span></a>
-      <a href="#projects" class="nav-link" data-section="projects"><span class="t-ar">المشاريع</span><span class="t-en">Projects</span></a>
-      <a href="#contact" class="nav-link" data-section="contact"><span class="t-ar">تواصل</span><span class="t-en">Contact</span></a>
-    </nav>
-
-    <div class="nav-actions">
-      <button id="lang-toggle" class="pixel-btn small" type="button">EN</button>
-      <button id="nav-burger" class="nav-burger" type="button" aria-label="menu">
-        <span></span><span></span><span></span>
-      </button>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#home">النخبة<span class="text-primary">.</span>للسيارات</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="فتح القائمة">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#home">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="#inventory">السيارات</a></li>
+        <li class="nav-item"><a class="nav-link" href="#offer">خدماتنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+      </ul>
+      <a class="btn btn-primary ms-lg-3 mt-3 mt-lg-0" href="#inventory">تصفح السيارات</a>
     </div>
   </div>
-</header>
+</nav>
 
-<main>
-
-  <!-- ===== HERO ===== -->
-  <section id="home" class="section hero">
-    <canvas id="hero-matrix"></canvas>
-    <div class="section-inner hero-inner">
-      <p class="pretitle">
-        <span class="t-ar">&gt; تشغيل ملف السيرة الذاتية...</span><span class="t-en">&gt; whoami --load-profile</span>
-      </p>
-      <h1 class="hero-name">ABDULAZIZ<span class="cursor-blink">_</span></h1>
-      <h1 class="hero-name hero-name-ar t-ar">عبدالعزيز</h1>
-      <p class="handle">@xsayfex</p>
-      <div class="role-line">
-        <span class="role-prefix">[</span><span id="role-text" class="role-text"></span><span class="cursor-blink">|</span><span class="role-prefix">]</span>
-      </div>
-      <p class="hero-bio">
-        <span class="t-ar">خريج محاسبة، مطوّر مواقع، ومختبر اختراق حاصل على المركز الثالث على مستوى المملكة العربية السعودية.</span>
-        <span class="t-en">Accounting graduate, web developer, and penetration tester — ranked 3rd place across the Kingdom of Saudi Arabia.</span>
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="pixel-btn primary"><span class="t-ar">تواصل معي</span><span class="t-en">Contact Me</span></a>
-        <a href="#projects" class="pixel-btn"><span class="t-ar">شاهد أعمالي</span><span class="t-en">View Work</span></a>
-      </div>
-    </div>
-    <div class="scroll-hint blink">▼</div>
-  </section>
-
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="section">
-    <div class="section-inner">
-      <p class="level-tag">LEVEL 01</p>
-      <h2 class="section-title"><span class="t-ar">نبذة عني</span><span class="t-en">About Me</span></h2>
-
-      <div class="dialog-box pixel-box">
-        <div class="dialog-avatar" aria-hidden="true">
-          <div class="pixel-avatar"></div>
+<!-- Hero -->
+<section class="py-6" id="home">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-3">معرض سيارات — تأسس 2016</span>
+        <h1 class="display-5 fw-bold mb-3">سيارتك الجاية تختارها بثقة، <span class="text-primary">مو بالصدفة</span></h1>
+        <p class="lead text-muted mb-4">معرض متخصص في بيع السيارات الجديدة والمستعملة، بفحص فني شامل وأسعار واضحة من أول لحظة.</p>
+        <div class="d-flex flex-wrap gap-3 mb-5">
+          <a href="#inventory" class="btn btn-primary btn-lg px-4">تصفح السيارات</a>
+          <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-outline-success btn-lg px-4"><i class="fa-brands fa-whatsapp me-1"></i> تواصل واتساب</a>
         </div>
-        <div class="dialog-text">
-          <p class="t-ar">
-            أنا عبدالعزيز، خريج بكالوريوس محاسبة من <strong>جامعة أم القرى</strong>، وأتدرّب حاليًا في
-            <strong>شركة سليمان موسى العليان</strong> حيث قمت بتطوير نظام لإدارة المخازن والجرد والمشتريات.
-            بالتوازي مع ذلك، أعمل في مجال البرمجة وتطوير المواقع الإلكترونية، وكذلك اختبار الاختراق،
-            وحصلت على <strong>المركز الثالث على مستوى المملكة العربية السعودية</strong> في اختبار اختراق
-            تطبيقات الجوال على منصتي <strong>Flag Yard</strong> و <strong>CyberHub</strong>.
-          </p>
-          <p class="t-en">
-            I'm Abdulaziz, a Bachelor's graduate in Accounting from <strong>Umm Al-Qura University</strong>,
-            currently training at <strong>Suliman Musa Al-Olayan Co.</strong>, where I built a Warehouse,
-            Inventory &amp; Purchasing Management System. Alongside that, I work in software development,
-            web development, and penetration testing — ranking <strong>3rd place across the Kingdom of Saudi
-            Arabia</strong> in Mobile Application Penetration Testing on the <strong>Flag Yard</strong> and
-            <strong>CyberHub</strong> platforms.
-          </p>
+        <div class="row text-center border-top pt-4">
+          <div class="col-4 border-end"><h3 class="fw-bold text-primary mb-0">120+</h3><small class="text-muted">سيارة متوفرة</small></div>
+          <div class="col-4 border-end"><h3 class="fw-bold text-primary mb-0">8</h3><small class="text-muted">سنوات خبرة</small></div>
+          <div class="col-4"><h3 class="fw-bold text-primary mb-0">4000+</h3><small class="text-muted">عميل راضٍ</small></div>
         </div>
       </div>
-
-      <div class="tag-row">
-        <span class="pixel-tag">💰 <span class="t-ar">محاسبة</span><span class="t-en">Accounting</span></span>
-        <span class="pixel-tag">💻 <span class="t-ar">تطوير مواقع</span><span class="t-en">Web Dev</span></span>
-        <span class="pixel-tag">🛡️ <span class="t-ar">اختبار اختراق</span><span class="t-en">Pentesting</span></span>
-        <span class="pixel-tag">📦 <span class="t-ar">إدارة المخازن</span><span class="t-en">Inventory Mgmt</span></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== EDUCATION ===== -->
-  <section id="education" class="section alt">
-    <div class="section-inner">
-      <p class="level-tag">LEVEL 02</p>
-      <h2 class="section-title"><span class="t-ar">التعليم</span><span class="t-en">Education</span></h2>
-
-      <div class="quest-card pixel-box">
-        <div class="quest-badge">🎓</div>
-        <div class="quest-body">
-          <p class="quest-status"><span class="t-ar">مهمة مكتملة</span><span class="t-en">QUEST COMPLETE</span></p>
-          <h3 class="quest-title">
-            <span class="t-ar">بكالوريوس محاسبة</span><span class="t-en">Bachelor's Degree in Accounting</span>
-          </h3>
-          <p class="quest-sub">
-            <span class="t-ar">جامعة أم القرى</span><span class="t-en">Umm Al-Qura University</span>
-          </p>
+      <div class="col-lg-6">
+        <div class="rounded-4 shadow-sm overflow-hidden" style="min-height:340px;">
+          <img src="https://images.unsplash.com/photo-1565376901308-37344a4b06ea?auto=format&amp;fit=crop&amp;w=900&amp;q=75" alt="سيارة معروضة في صالة العرض" class="w-100 h-100" style="object-fit:cover;min-height:340px;">
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== EXPERIENCE ===== -->
-  <section id="experience" class="section">
-    <div class="section-inner">
-      <p class="level-tag">LEVEL 03</p>
-      <h2 class="section-title"><span class="t-ar">الخبرة</span><span class="t-en">Experience</span></h2>
-
-      <div class="quest-card pixel-box">
-        <div class="quest-badge">🧾</div>
-        <div class="quest-body">
-          <p class="quest-status in-progress"><span class="t-ar">مهمة جارية</span><span class="t-en">QUEST IN PROGRESS</span></p>
-          <h3 class="quest-title">
-            <span class="t-ar">متدرب محاسبة</span><span class="t-en">Accounting Trainee</span>
-          </h3>
-          <p class="quest-sub">
-            <span class="t-ar">شركة سليمان موسى العليان</span><span class="t-en">Suliman Musa Al-Olayan Co.</span>
-          </p>
-          <p class="quest-desc">
-            <span class="t-ar">قمت بتصميم وتطوير نظام لإدارة المخازن والجرد والمشتريات لتحسين دقة وكفاءة العمليات التشغيلية.</span>
-            <span class="t-en">Designed and built a Warehouse, Inventory &amp; Purchasing Management System to improve the accuracy and efficiency of operations.</span>
-          </p>
+<!-- Features -->
+<section class="py-6 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">ليش تشتري من النخبة للسيارات</h2>
+      <p class="text-muted">مش بس نبيع سيارات، نبني ثقة تدوم من أول زيارة لين بعد سنين من الاستخدام.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+          <div class="mx-auto mb-3 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center" style="width:64px;height:64px;font-size:1.4rem;"><i class="fa-solid fa-shield-halved"></i></div>
+          <h5 class="fw-bold">فحص وضمان حقيقي</h5>
+          <p class="text-muted mb-0">كل سيارة تمر بفحص فني من 150 نقطة، وتطلع لك بتقرير حالة مكتوب قبل ما تقرر.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+          <div class="mx-auto mb-3 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center" style="width:64px;height:64px;font-size:1.4rem;"><i class="fa-solid fa-layer-group"></i></div>
+          <h5 class="fw-bold">تشكيلة واسعة ومتجددة</h5>
+          <p class="text-muted mb-0">أكثر من 120 سيارة جديدة ومستعملة، تتحدث أسبوعيًا من مختلف الماركات والفئات.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+          <div class="mx-auto mb-3 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center" style="width:64px;height:64px;font-size:1.4rem;"><i class="fa-solid fa-sack-dollar"></i></div>
+          <h5 class="fw-bold">تمويل بدون تعقيد</h5>
+          <p class="text-muted mb-0">خيارات تقسيط وتمويل واضحة من أول يوم، بدون شروط مخفية أو مفاجآت لاحقة.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== SKILLS ===== -->
-  <section id="skills" class="section alt">
-    <div class="section-inner">
-      <p class="level-tag">LEVEL 04</p>
-      <h2 class="section-title"><span class="t-ar">المهارات</span><span class="t-en">Skills</span></h2>
-      <p class="section-note"><span class="t-ar">// جدول الحالة</span><span class="t-en">// character stat sheet</span></p>
+<!-- Offer -->
+<section class="py-6 bg-primary text-white" id="offer">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge bg-white text-primary rounded-pill px-3 py-2 mb-3">عرض لفترة محدودة</span>
+        <h2 class="fw-bold mb-3">فحص مجاني + تمويل مرن عند الشراء من عندنا</h2>
+        <p class="mb-4 opacity-75">احجز موعدك الآن واستفد من باقة مزايا تجعل قرار شراء سيارتك أسهل وأوضح.</p>
+        <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-light btn-lg px-4 fw-bold">احجز فحصك المجاني</a>
+      </div>
+      <div class="col-lg-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-transparent text-white border-light-subtle d-flex gap-3 py-3"><i class="fa-solid fa-circle-check mt-1"></i> فحص فني مجاني وتقرير حالة مفصّل لكل سيارة</li>
+          <li class="list-group-item bg-transparent text-white border-light-subtle d-flex gap-3 py-3"><i class="fa-solid fa-circle-check mt-1"></i> تقييم فوري لسيارتك الحالية عند الاستبدال</li>
+          <li class="list-group-item bg-transparent text-white border-light-subtle d-flex gap-3 py-3"><i class="fa-solid fa-circle-check mt-1"></i> تمويل يبدأ بدفعة أولى منخفضة</li>
+          <li class="list-group-item bg-transparent text-white border-light-subtle d-flex gap-3 py-3"><i class="fa-solid fa-circle-check mt-1"></i> متابعة ودعم بعد التسليم</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="stats-grid">
-        <div class="stats-col pixel-box">
-          <h3 class="stats-col-title"><span class="t-ar">التقنية</span><span class="t-en">Tech</span></h3>
+<!-- Inventory -->
+<section class="py-6" id="inventory">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
+      <h2 class="fw-bold mb-0">أحدث السيارات المتوفرة</h2>
+      <a href="#contact" class="btn btn-outline-primary">تواصل لمزيد من الخيارات</a>
+    </div>
+    <div class="row g-4">
 
-          <div class="stat-row" data-value="90">
-            <span class="stat-label"><span class="t-ar">تطوير المواقع</span><span class="t-en">Web Development</span></span>
-            <div class="stat-bar"><div class="stat-fill"></div></div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="car-media rounded-top overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1638618164682-12b986ec2a75?auto=format&amp;fit=crop&amp;w=500&amp;q=70" alt="تويوتا كامري بيضاء" class="w-100 h-100" style="object-fit:cover;" loading="lazy">
           </div>
-          <div class="stat-row" data-value="85">
-            <span class="stat-label"><span class="t-ar">اختبار الاختراق</span><span class="t-en">Penetration Testing</span></span>
-            <div class="stat-bar"><div class="stat-fill"></div></div>
-          </div>
-          <div class="stat-row" data-value="80">
-            <span class="stat-label"><span class="t-ar">البرمجة</span><span class="t-en">Programming</span></span>
-            <div class="stat-bar"><div class="stat-fill"></div></div>
-          </div>
-        </div>
-
-        <div class="stats-col pixel-box">
-          <h3 class="stats-col-title"><span class="t-ar">المحاسبة والأعمال</span><span class="t-en">Accounting &amp; Business</span></h3>
-
-          <div class="stat-row" data-value="85">
-            <span class="stat-label"><span class="t-ar">المحاسبة المالية</span><span class="t-en">Financial Accounting</span></span>
-            <div class="stat-bar"><div class="stat-fill"></div></div>
-          </div>
-          <div class="stat-row" data-value="80">
-            <span class="stat-label"><span class="t-ar">إدارة المخازن والمشتريات</span><span class="t-en">Inventory &amp; Purchasing</span></span>
-            <div class="stat-bar"><div class="stat-fill"></div></div>
-          </div>
-          <div class="stat-row" data-value="75">
-            <span class="stat-label">Excel / ERP</span>
-            <div class="stat-bar"><div class="stat-fill"></div></div>
+          <div class="card-body">
+            <span class="badge bg-success-subtle text-success-emphasis mb-2">جديدة</span>
+            <h5 class="card-title fw-bold">تويوتا كامري 2024</h5>
+            <p class="text-muted small mb-2">2024 · 0 كم · أوتوماتيك</p>
+            <p class="fw-bold text-primary fs-5 mb-3">128,000 ر.س</p>
+            <div class="d-flex gap-2">
+              <a href="#contact" class="btn btn-outline-primary btn-sm flex-fill">التفاصيل</a>
+              <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-success btn-sm"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
           </div>
         </div>
       </div>
-      <p class="stats-disclaimer">
-        <span class="t-ar">* المستويات تقريبية ويمكن تعديلها لاحقًا حسب رغبتك.</span>
-        <span class="t-en">* Levels are illustrative — feel free to adjust to your liking.</span>
-      </p>
-    </div>
-  </section>
 
-  <!-- ===== ACHIEVEMENTS ===== -->
-  <section id="achievements" class="section">
-    <div class="section-inner">
-      <p class="level-tag">LEVEL 05</p>
-      <h2 class="section-title"><span class="t-ar">الإنجازات</span><span class="t-en">Achievements</span></h2>
-
-      <div class="trophy-grid">
-        <div class="trophy-card pixel-box">
-          <div class="trophy-icon">🥉</div>
-          <p class="trophy-rank"><span class="t-ar">المركز الثالث</span><span class="t-en">3rd Place</span></p>
-          <p class="trophy-title">
-            <span class="t-ar">اختبار اختراق تطبيقات الجوال - على مستوى المملكة العربية السعودية</span>
-            <span class="t-en">Mobile Application Penetration Testing — Kingdom of Saudi Arabia</span>
-          </p>
-          <p class="trophy-platform">Flag Yard</p>
-        </div>
-
-        <div class="trophy-card pixel-box">
-          <div class="trophy-icon">🥉</div>
-          <p class="trophy-rank"><span class="t-ar">المركز الثالث</span><span class="t-en">3rd Place</span></p>
-          <p class="trophy-title">
-            <span class="t-ar">اختبار اختراق تطبيقات الجوال</span>
-            <span class="t-en">Mobile Application Penetration Testing</span>
-          </p>
-          <p class="trophy-platform">CyberHub</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PROJECTS ===== -->
-  <section id="projects" class="section alt">
-    <div class="section-inner">
-      <p class="level-tag">LEVEL 06</p>
-      <h2 class="section-title"><span class="t-ar">المشاريع</span><span class="t-en">Projects</span></h2>
-
-      <div class="project-grid">
-        <div class="project-card pixel-box">
-          <div class="project-icon">📦</div>
-          <h3 class="project-title">
-            <span class="t-ar">نظام إدارة المخازن والجرد والمشتريات</span>
-            <span class="t-en">Warehouse, Inventory &amp; Purchasing System</span>
-          </h3>
-          <p class="project-desc">
-            <span class="t-ar">نظام طُوّر أثناء التدريب في شركة سليمان موسى العليان لتنظيم عمليات المخازن، الجرد، والمشتريات بدقة أعلى.</span>
-            <span class="t-en">Built during my training at Suliman Musa Al-Olayan Co. to streamline warehouse, stocktaking, and purchasing operations.</span>
-          </p>
-        </div>
-
-        <div class="project-card pixel-box">
-          <div class="project-icon">🕹️</div>
-          <h3 class="project-title">
-            <span class="t-ar">هذا البروتوفوليو</span>
-            <span class="t-en">This Portfolio</span>
-          </h3>
-          <p class="project-desc">
-            <span class="t-ar">موقع شخصي بتصميم بكسل آرت، مبني من الصفر بلغات HTML وCSS وJavaScript، ثنائي اللغة.</span>
-            <span class="t-en">A bilingual pixel-art personal site built from scratch with HTML, CSS, and JavaScript.</span>
-          </p>
-        </div>
-
-        <div class="project-card pixel-box">
-          <div class="project-icon">🛡️</div>
-          <h3 class="project-title">
-            <span class="t-ar">تحديات اختبار اختراق تطبيقات الجوال</span>
-            <span class="t-en">Mobile App Pentesting Challenges</span>
-          </h3>
-          <p class="project-desc">
-            <span class="t-ar">تحليل واختبار ثغرات تطبيقات جوال ضمن منافسات Flag Yard وCyberHub، بترتيب المركز الثالث على مستوى المملكة.</span>
-            <span class="t-en">Analyzed and exploited mobile app vulnerabilities in the Flag Yard and CyberHub competitions, placing 3rd nationwide.</span>
-          </p>
-        </div>
-
-        <div class="project-card pixel-box">
-          <div class="project-icon">📱</div>
-          <h3 class="project-title">
-            <span class="t-ar">موقع لشرح اختبار اختراق تطبيقات الجوال</span>
-            <span class="t-en">Mobile App Penetration Testing Guide</span>
-          </h3>
-          <p class="project-desc">
-            <span class="t-ar">موقع من إعدادي أشرح فيه منهجية اختبار اختراق تطبيقات الجوال خطوة بخطوة، من التحليل الساكن والديناميكي إلى استغلال الثغرات الشائعة.</span>
-            <span class="t-en">A site I built explaining mobile application penetration testing methodology step by step — from static and dynamic analysis to exploiting common vulnerabilities.</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="section">
-    <div class="section-inner">
-      <p class="level-tag">LEVEL 07</p>
-      <h2 class="section-title"><span class="t-ar">تواصل معي</span><span class="t-en">Contact</span></h2>
-      <p class="section-note"><span class="t-ar">// أرسل رسالة أو تواصل مباشرة عبر البريد</span><span class="t-en">// send a message or reach out directly by email</span></p>
-
-      <div class="contact-wrap">
-        <form id="contact-form" class="contact-form pixel-box" novalidate>
-          <label class="field">
-            <span class="t-ar">الاسم</span><span class="t-en">Name</span>
-            <input type="text" name="name" required>
-          </label>
-          <label class="field">
-            <span class="t-ar">البريد الإلكتروني</span><span class="t-en">Email</span>
-            <input type="email" name="email" required>
-          </label>
-          <label class="field">
-            <span class="t-ar">الرسالة</span><span class="t-en">Message</span>
-            <textarea name="message" rows="4" required></textarea>
-          </label>
-          <button type="submit" class="pixel-btn primary full">
-            <span class="t-ar">إرسال</span><span class="t-en">Send</span>
-          </button>
-          <p id="form-status" class="form-status" aria-live="polite"></p>
-        </form>
-
-        <div class="contact-side">
-          <a class="pixel-btn full" href="mailto:abdulazizarawi101@gmail.com">
-            ✉️ abdulazizarawi101@gmail.com
-          </a>
-          <div class="social-row">
-            <a class="pixel-btn small" href="https://github.com/xsayfex" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="pixel-btn small" href="https://x.com/xsayfex" target="_blank" rel="noopener noreferrer">X</a>
-            <a class="pixel-btn small" href="https://tiktok.com/@xsayfex" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="car-media rounded-top overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1761738217531-44a249d1dc87?auto=format&amp;fit=crop&amp;w=500&amp;q=70" alt="أودي A6 بيضاء داخل صالة العرض" class="w-100 h-100" style="object-fit:cover;" loading="lazy">
           </div>
-          <p class="contact-hint">@xsayfex</p>
+          <div class="card-body">
+            <span class="badge bg-secondary-subtle text-secondary-emphasis mb-2">مستعملة</span>
+            <h5 class="card-title fw-bold">أودي A6 2022</h5>
+            <p class="text-muted small mb-2">2022 · 42,000 كم · أوتوماتيك</p>
+            <p class="fw-bold text-primary fs-5 mb-3">155,000 ر.س</p>
+            <div class="d-flex gap-2">
+              <a href="#contact" class="btn btn-outline-primary btn-sm flex-fill">التفاصيل</a>
+              <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-success btn-sm"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="car-media rounded-top overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1598248691267-4a62dfdfd8a8?auto=format&amp;fit=crop&amp;w=500&amp;q=70" alt="نيسان باترول سوداء في المرآب" class="w-100 h-100" style="object-fit:cover;" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="badge bg-success-subtle text-success-emphasis mb-2">جديدة</span>
+            <h5 class="card-title fw-bold">نيسان باترول 2024</h5>
+            <p class="text-muted small mb-2">2024 · 0 كم · أوتوماتيك</p>
+            <p class="fw-bold text-primary fs-5 mb-3">215,000 ر.س</p>
+            <div class="d-flex gap-2">
+              <a href="#contact" class="btn btn-outline-primary btn-sm flex-fill">التفاصيل</a>
+              <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-success btn-sm"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="car-media rounded-top overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1770750869246-3912b5685709?auto=format&amp;fit=crop&amp;w=500&amp;q=70" alt="بي ام دبليو سوداء بشعار M" class="w-100 h-100" style="object-fit:cover;" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="badge bg-secondary-subtle text-secondary-emphasis mb-2">مستعملة</span>
+            <h5 class="card-title fw-bold">بي ام دبليو 530i 2022</h5>
+            <p class="text-muted small mb-2">2022 · 28,000 كم · أوتوماتيك</p>
+            <p class="fw-bold text-primary fs-5 mb-3">175,000 ر.س</p>
+            <div class="d-flex gap-2">
+              <a href="#contact" class="btn btn-outline-primary btn-sm flex-fill">التفاصيل</a>
+              <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-success btn-sm"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="car-media rounded-top overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1625907610348-d20412d20be8?auto=format&amp;fit=crop&amp;w=500&amp;q=70" alt="تويوتا لاند كروزر رمادية" class="w-100 h-100" style="object-fit:cover;" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="badge bg-secondary-subtle text-secondary-emphasis mb-2">مستعملة</span>
+            <h5 class="card-title fw-bold">تويوتا لاند كروزر 2022</h5>
+            <p class="text-muted small mb-2">2022 · 35,000 كم · أوتوماتيك</p>
+            <p class="fw-bold text-primary fs-5 mb-3">235,000 ر.س</p>
+            <div class="d-flex gap-2">
+              <a href="#contact" class="btn btn-outline-primary btn-sm flex-fill">التفاصيل</a>
+              <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-success btn-sm"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Process steps -->
+<section class="py-6 bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5">خطوات شراء سيارتك معنا</h2>
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md">
+        <div class="step-num bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold mx-auto mb-3">1</div>
+        <h6 class="fw-bold">الاستشارة</h6>
+        <p class="text-muted small">نفهم احتياجك وميزانيتك</p>
+      </div>
+      <div class="col-6 col-md">
+        <div class="step-num bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold mx-auto mb-3">2</div>
+        <h6 class="fw-bold">الاختيار</h6>
+        <p class="text-muted small">تصفح أو عاين على الطبيعة</p>
+      </div>
+      <div class="col-6 col-md">
+        <div class="step-num bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold mx-auto mb-3">3</div>
+        <h6 class="fw-bold">الفحص</h6>
+        <p class="text-muted small">تقرير فني شامل وشفاف</p>
+      </div>
+      <div class="col-6 col-md">
+        <div class="step-num bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold mx-auto mb-3">4</div>
+        <h6 class="fw-bold">التمويل</h6>
+        <p class="text-muted small">إجراءات سريعة وواضحة</p>
+      </div>
+      <div class="col-6 col-md">
+        <div class="step-num bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold mx-auto mb-3">5</div>
+        <h6 class="fw-bold">التسليم</h6>
+        <p class="text-muted small">سيارتك جاهزة مع الضمان</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process accordion -->
+<section class="py-6">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="fw-bold text-center mb-2">نخطّط، نرشّح، نفحص، ونسلّم</h2>
+        <p class="text-muted text-center mb-4">أربع خطوات واضحة تحكم كل عملية بيع نسويها، من أول مكالمة لين تسليم المفاتيح.</p>
+        <div class="accordion" id="processAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+                <span class="badge bg-primary rounded-circle badge-num d-flex align-items-center justify-content-center me-3">1</span> نفهم ونخطط
+              </button>
+            </h2>
+            <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#processAccordion">
+              <div class="accordion-body text-muted">نجلس معاك ونسمع بالضبط وش تبغى، سيارة عائلية، رياضية أو اقتصادية، ونحدد الميزانية المناسبة.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+                <span class="badge bg-primary rounded-circle badge-num d-flex align-items-center justify-content-center me-3">2</span> نرشّح ونعرض
+              </button>
+            </h2>
+            <div id="step2" class="accordion-collapse collapse" data-bs-parent="#processAccordion">
+              <div class="accordion-body text-muted">نجهز لك قائمة مختصرة بأفضل الخيارات اللي تطابق طلبك، بكل التفاصيل والأسعار بشفافية.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+                <span class="badge bg-primary rounded-circle badge-num d-flex align-items-center justify-content-center me-3">3</span> نفحص ونختبر
+              </button>
+            </h2>
+            <div id="step3" class="accordion-collapse collapse" data-bs-parent="#processAccordion">
+              <div class="accordion-body text-muted">بعد ما تختار، نتأكد إن السيارة تمام فنيًا وميكانيكيًا قبل أي اتفاق نهائي.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4">
+                <span class="badge bg-primary rounded-circle badge-num d-flex align-items-center justify-content-center me-3">4</span> نسلّم وندعم
+              </button>
+            </h2>
+            <div id="step4" class="accordion-collapse collapse" data-bs-parent="#processAccordion">
+              <div class="accordion-body text-muted">بعد الاستلام، نظل معاك بالمتابعة والدعم الفني لفترة طويلة بعد البيع.</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="https://wa.me/966500000000" target="_blank" rel="noopener" class="btn btn-primary btn-lg px-4">احجز استشارتك المجانية</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
+<!-- Contact -->
+<section class="py-6 bg-light" id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h2 class="fw-bold mb-3">تواصل معنا</h2>
+        <p class="text-muted mb-4">عندنا فريق جاهز يجاوبك على استفساراتك، سواء عن سيارة معينة أو خيارات التمويل.</p>
+        <ul class="list-unstyled">
+          <li class="d-flex align-items-center gap-3 mb-3">
+            <span class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:44px;height:44px;"><i class="fa-solid fa-location-dot"></i></span>
+            <span>الرياض، المملكة العربية السعودية</span>
+          </li>
+          <li class="d-flex align-items-center gap-3 mb-3">
+            <span class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:44px;height:44px;"><i class="fa-solid fa-phone"></i></span>
+            <span dir="ltr">+966 50 000 0000</span>
+          </li>
+          <li class="d-flex align-items-center gap-3 mb-3">
+            <span class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:44px;height:44px;"><i class="fa-brands fa-whatsapp"></i></span>
+            <span dir="ltr">+966 50 000 0000</span>
+          </li>
+          <li class="d-flex align-items-center gap-3">
+            <span class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:44px;height:44px;"><i class="fa-solid fa-envelope"></i></span>
+            <span dir="ltr">info@alnukhba-cars.sa</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-7">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <form onsubmit="return false;">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">الاسم</label>
+                  <input type="text" class="form-control" placeholder="اكتب اسمك">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">رقم الهاتف</label>
+                  <input type="tel" class="form-control" placeholder="05xxxxxxxx">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">البريد الإلكتروني</label>
+                  <input type="email" class="form-control" placeholder="example@email.com">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">رسالتك</label>
+                  <textarea class="form-control" rows="4" placeholder="اكتب استفسارك هنا"></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary w-100 btn-lg">إرسال الرسالة</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer id="site-footer">
-  <p><span class="t-ar">صُنع بـ HTML/CSS/JS •</span><span class="t-en">Built with HTML/CSS/JS •</span> <span id="year"></span> © Abdulaziz</p>
-  <p class="footer-flavor blink">&gt; TO BE CONTINUED...</p>
+<!-- Footer -->
+<footer class="bg-dark text-light pt-5">
+  <div class="container">
+    <div class="row g-4 pb-4 border-bottom border-secondary-subtle">
+      <div class="col-lg-4">
+        <div class="fw-bold fs-5 mb-3">النخبة<span class="text-primary">.</span>للسيارات</div>
+        <p class="text-secondary small">معرض متخصص في بيع السيارات الجديدة والمستعملة، نوفر تشكيلة موثوقة وخدمة ما بعد البيع بجودة عالية.</p>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#" class="text-secondary"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="text-secondary"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="text-secondary"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="text-secondary"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="text-uppercase small text-secondary mb-3">الموقع</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="#home" class="text-light text-decoration-none">الرئيسية</a></li>
+          <li class="mb-2"><a href="#inventory" class="text-light text-decoration-none">السيارات</a></li>
+          <li class="mb-2"><a href="#offer" class="text-light text-decoration-none">خدماتنا</a></li>
+          <li class="mb-2"><a href="#contact" class="text-light text-decoration-none">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-3">
+        <h6 class="text-uppercase small text-secondary mb-3">الفئات</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="#" class="text-light text-decoration-none">سيارات جديدة</a></li>
+          <li class="mb-2"><a href="#" class="text-light text-decoration-none">سيارات مستعملة</a></li>
+          <li class="mb-2"><a href="#" class="text-light text-decoration-none">سيارات فاخرة</a></li>
+          <li class="mb-2"><a href="#" class="text-light text-decoration-none">دفع رباعي SUV</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h6 class="text-uppercase small text-secondary mb-3">تواصل</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="tel:+966500000000" class="text-light text-decoration-none" dir="ltr">+966 50 000 0000</a></li>
+          <li class="mb-2"><a href="mailto:info@alnukhba-cars.sa" class="text-light text-decoration-none" dir="ltr">info@alnukhba-cars.sa</a></li>
+          <li class="mb-2">الرياض، السعودية</li>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-between py-4 small text-secondary">
+      <span>© 2026 النخبة للسيارات. جميع الحقوق محفوظة.</span>
+      <span dir="ltr">Riyadh, SA</span>
+    </div>
+  </div>
 </footer>
 
-<div id="toast" class="toast"></div>
-
-<script>
-
-
-  (() => {
-  'use strict';
-
-  const html = document.documentElement;
-  const body = document.body;
-
-  /* =========================================================
-     LANGUAGE TOGGLE
-     ========================================================= */
-  const langToggleBtn = document.getElementById('lang-toggle');
-  const ROLES = {
-    ar: ['مطوّر مواقع إلكترونية', 'مبرمج', 'مختبر اختراق', 'محاسب'],
-    en: ['Web Developer', 'Programmer', 'Penetration Tester', 'Accountant']
-  };
-
-  function setLang(lang) {
-    const isEn = lang === 'en';
-    html.classList.toggle('lang-en', isEn);
-    html.classList.toggle('lang-ar', !isEn);
-    body.classList.toggle('lang-en', isEn);
-    body.classList.toggle('lang-ar', !isEn);
-    html.setAttribute('lang', lang);
-    html.setAttribute('dir', isEn ? 'ltr' : 'rtl');
-    langToggleBtn.textContent = isEn ? 'AR' : 'EN';
-    localStorage.setItem('portfolio-lang', lang);
-    restartTypewriter(lang);
-  }
-
-  langToggleBtn.addEventListener('click', () => {
-    const current = html.classList.contains('lang-en') ? 'en' : 'ar';
-    setLang(current === 'en' ? 'ar' : 'en');
-  });
-
-  const savedLang = localStorage.getItem('portfolio-lang');
-  if (savedLang) setLang(savedLang);
-
-  /* =========================================================
-     BOOT SCREEN
-     ========================================================= */
-  const bootScreen = document.getElementById('boot-screen');
-  function dismissBoot() {
-    bootScreen.classList.add('hidden');
-    document.removeEventListener('click', dismissBoot);
-    document.removeEventListener('keydown', dismissBoot);
-    body.style.overflow = '';
-  }
-  body.style.overflow = 'hidden';
-  document.addEventListener('click', dismissBoot);
-  document.addEventListener('keydown', dismissBoot);
-  setTimeout(dismissBoot, 4000); // auto-dismiss fallback
-
-  /* =========================================================
-     MATRIX RAIN CANVAS (used for boot screen + hero background)
-     ========================================================= */
-  function startMatrixRain(canvas, opts = {}) {
-    const ctx = canvas.getContext('2d');
-    const chars = 'アイウエオカキクケコ01アビシフABCDEFGHIJKLMNOPQRSTUVWXYZ$#%&';
-    let cols, drops, w, h;
-    const fontSize = opts.fontSize || 16;
-    const color = opts.color || '#39ff14';
-
-    function resize() {
-      w = canvas.width = canvas.offsetWidth;
-      h = canvas.height = canvas.offsetHeight;
-      cols = Math.floor(w / fontSize);
-      drops = new Array(cols).fill(0).map(() => Math.random() * -50);
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    function draw() {
-      ctx.fillStyle = 'rgba(5,7,12,0.15)';
-      ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = color;
-      ctx.font = fontSize + 'px monospace';
-      for (let i = 0; i < cols; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > h && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-    const id = setInterval(draw, 45);
-    return () => { clearInterval(id); window.removeEventListener('resize', resize); };
-  }
-
-  const bootCanvas = document.getElementById('matrix-canvas');
-  const heroCanvas = document.getElementById('hero-matrix');
-  if (bootCanvas) startMatrixRain(bootCanvas, { color: '#6fcf97', fontSize: 18 });
-  if (heroCanvas) startMatrixRain(heroCanvas, { color: '#6fb3c9', fontSize: 16 });
-
-  /* =========================================================
-     TYPEWRITER ROLE ROTATOR
-     ========================================================= */
-  const roleTextEl = document.getElementById('role-text');
-  let typewriterTimer = null;
-
-  function typewriterLoop(lang) {
-    const words = ROLES[lang];
-    let wordIndex = 0, charIndex = 0, deleting = false;
-
-    function tick() {
-      const word = words[wordIndex];
-      if (!deleting) {
-        charIndex++;
-        roleTextEl.textContent = word.slice(0, charIndex);
-        if (charIndex === word.length) {
-          deleting = true;
-          typewriterTimer = setTimeout(tick, 1400);
-          return;
-        }
-      } else {
-        charIndex--;
-        roleTextEl.textContent = word.slice(0, charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-        }
-      }
-      typewriterTimer = setTimeout(tick, deleting ? 45 : 90);
-    }
-    tick();
-  }
-
-  function restartTypewriter(lang) {
-    clearTimeout(typewriterTimer);
-    if (roleTextEl) typewriterLoop(lang);
-  }
-  restartTypewriter(html.classList.contains('lang-en') ? 'en' : 'ar');
-
-  /* =========================================================
-     NAV: burger menu + scroll spy
-     ========================================================= */
-  const navLinks = document.getElementById('nav-links');
-  const burger = document.getElementById('nav-burger');
-  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  const sections = document.querySelectorAll('main .section');
-  const navAnchors = document.querySelectorAll('.nav-link');
-  const spyObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navAnchors.forEach(a => a.classList.toggle('active', a.dataset.section === id));
-      }
-    });
-  }, { rootMargin: '-45% 0px -45% 0px' });
-  sections.forEach(s => spyObserver.observe(s));
-
-  /* =========================================================
-     REVEAL ON SCROLL
-     ========================================================= */
-  document.querySelectorAll('.pixel-box, .trophy-card, .project-card').forEach(el => el.classList.add('reveal'));
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  /* =========================================================
-     SKILL STAT BARS
-     ========================================================= */
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const row = entry.target;
-        const value = row.dataset.value || 0;
-        const fill = row.querySelector('.stat-fill');
-        if (fill) fill.style.width = value + '%';
-        statObserver.unobserve(row);
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.stat-row').forEach(row => statObserver.observe(row));
-
-  /* =========================================================
-     TOAST
-     ========================================================= */
-  const toast = document.getElementById('toast');
-  let toastTimer = null;
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
-  }
-
-  /* =========================================================
-     CONTACT FORM (front-end only demo)
-     ========================================================= */
-  const form = document.getElementById('contact-form');
-  const formStatus = document.getElementById('form-status');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const isEn = html.classList.contains('lang-en');
-    const msg = isEn
-      ? '> MESSAGE READY — connect a backend or use the email link to actually send it.'
-      : '> الرسالة جاهزة — اربط النموذج بخادم أو استخدم رابط البريد لإرسالها فعليًا.';
-    formStatus.textContent = msg;
-    showToast(isEn ? 'ACHIEVEMENT UNLOCKED: Message Drafted' : 'إنجاز جديد: تم تجهيز الرسالة');
-    form.reset();
-  });
-
-  
-  /* =========================================================
-     KONAMI CODE EASTER EGG
-     ========================================================= */
-  const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-  let konamiProgress = 0;
-  document.addEventListener('keydown', (e) => {
-    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    if (key === konami[konamiProgress]) {
-      konamiProgress++;
-      if (konamiProgress === konami.length) {
-        konamiProgress = 0;
-        const isEn = html.classList.contains('lang-en');
-        showToast(isEn ? '🛡️ HACKER MODE UNLOCKED' : '🛡️ تم تفعيل وضع الهاكر');
-      }
-    } else {
-      konamiProgress = key === konami[0] ? 1 : 0;
-    }
-  });
-
-  /* =========================================================
-     FOOTER YEAR
-     ========================================================= */
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-})();
-
-  
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
