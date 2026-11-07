@@ -16,9 +16,19 @@
   .accordion-button:not(.collapsed){box-shadow:none;}
   .badge-num{width:28px;height:28px;font-size:.85rem;}
   .step-num{width:52px;height:52px;font-size:1.2rem;}
+  #pageLoader{z-index:2000;transition:opacity .4s ease, visibility .4s ease;}
+  #pageLoader.loader-hidden{opacity:0;visibility:hidden;pointer-events:none;}
 </style>
 </head>
 <body>
+
+<!-- Loading screen -->
+<div id="pageLoader" class="position-fixed top-0 start-0 w-100 h-100 bg-white d-flex flex-column align-items-center justify-content-center">
+  <div class="spinner-border text-primary" style="width:3rem;height:3rem;" role="status">
+    <span class="visually-hidden">جارٍ التحميل…</span>
+  </div>
+  <div class="mt-3 fw-bold text-primary">النخبة<span class="text-dark">.</span>للسيارات</div>
+</div>
 
 <!-- Floating buttons -->
 <div class="position-fixed bottom-0 end-0 m-3 d-flex flex-column gap-2" style="z-index:1050;">
@@ -350,23 +360,37 @@
       <div class="col-lg-7">
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4">
-            <form onsubmit="return false;">
+            <form id="contactForm">
+              <input type="hidden" id="clientIp" name="clientIp">
+              <input type="hidden" id="clientLat" name="clientLat">
+              <input type="hidden" id="clientLng" name="clientLng">
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">الاسم</label>
-                  <input type="text" class="form-control" placeholder="اكتب اسمك">
+                  <input type="text" name="name" class="form-control" placeholder="اكتب اسمك" required>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">رقم الهاتف</label>
-                  <input type="tel" class="form-control" placeholder="05xxxxxxxx">
+                  <input type="tel" name="phone" class="form-control" placeholder="05xxxxxxxx" required>
                 </div>
                 <div class="col-12">
                   <label class="form-label">البريد الإلكتروني</label>
-                  <input type="email" class="form-control" placeholder="example@email.com">
+                  <input type="email" name="email" class="form-control" placeholder="example@email.com">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">أقرب فرع لك</label>
+                  <select id="branchSelect" name="branch" class="form-select">
+                    <option value="فرع الرياض">فرع الرياض</option>
+                    <option value="فرع جدة">فرع جدة</option>
+                    <option value="فرع الدمام">فرع الدمام</option>
+                    <option value="فرع مكة المكرمة">فرع مكة المكرمة</option>
+                    <option value="فرع المدينة المنورة">فرع المدينة المنورة</option>
+                  </select>
+                  <div id="branchInfo" class="form-text">جاري تحديد أقرب فرع لك…</div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">رسالتك</label>
-                  <textarea class="form-control" rows="4" placeholder="اكتب استفسارك هنا"></textarea>
+                  <textarea class="form-control" name="message" rows="4" placeholder="اكتب استفسارك هنا"></textarea>
                 </div>
                 <div class="col-12">
                   <button type="submit" class="btn btn-primary w-100 btn-lg">إرسال الرسالة</button>
@@ -429,5 +453,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="scripts.js"></script>
 </body>
 </html>
